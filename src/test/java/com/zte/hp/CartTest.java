@@ -30,4 +30,10 @@ public class CartTest {
         double total = new Cart(new Book(I), new Book(II), new Book(III), new Book(IV)).cost();
         assertThat(total, equalTo(32.0 * 4 * 0.8));
     }
+
+    @Test
+    public void should_get_25_percent_discount_when_go_WHOLE_hog() throws Exception {
+        double total = new Cart(new Book(I), new Book(II), new Book(III), new Book(IV), new Book(V)).cost();
+        assertThat(total, equalTo(32.0 * 5 * 0.75));
+    }
 }
