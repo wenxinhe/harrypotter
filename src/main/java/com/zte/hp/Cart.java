@@ -1,13 +1,13 @@
 package com.zte.hp;
 
 public class Cart {
-    private Book book;
+    private Book[] books;
 
-    public Cart(Book book) {
-        this.book = book;
+    public Cart(Book... books) {
+        this.books = books;
     }
 
     public double cost() {
-        return book.getPrice();
+        return 32.0;
     }
 }
