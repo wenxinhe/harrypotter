@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
 
 public class CartTest {
     @Test
-    public void should_cost_32_rmb_when_buy_one_book() throws Exception {
+    public void should_get_no_discount_when_buy_one_book() throws Exception {
         double total = new Cart(new Book(I)).cost();
         assertThat(total, equalTo(32.0));
     }
@@ -19,4 +19,6 @@ public class CartTest {
         double total = new Cart(new Book(I), new Book(II)).cost();
         assertThat(total, equalTo(32.0 * 2 * 0.95));
     }
+
+
 }

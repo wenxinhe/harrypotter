@@ -10,7 +10,4 @@ public class Book {
         this.volume = volume;
     }
 
-    public double getPrice() {
-        return 32.0;
-    }
 }
