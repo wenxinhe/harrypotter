@@ -36,4 +36,11 @@ public class CartTest {
         double total = new Cart(new Book(I), new Book(II), new Book(III), new Book(IV), new Book(V)).cost();
         assertThat(total, equalTo(32.0 * 5 * 0.75));
     }
+
+    @Test
+    public void should_get_10_percent_discount_on_three_books_when_two_same_books_in_four() throws Exception {
+        Book[] fourBooksButTwoSame = new Book[]{new Book(I), new Book(II), new Book(III), new Book(III)};
+        double total = new Cart(fourBooksButTwoSame).cost();
+        assertThat(total, equalTo(32.0 * 3 * 0.9 + 32.0));
+    }
 }

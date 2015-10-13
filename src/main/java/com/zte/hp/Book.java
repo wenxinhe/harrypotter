@@ -4,10 +4,13 @@ package com.zte.hp;
  */
 public class Book {
 
-    private Volume volume;
+    private final Volume volume;
 
     public Book(Volume volume) {
         this.volume = volume;
     }
 
+    public Volume getVolume() {
+        return volume;
+    }
 }
