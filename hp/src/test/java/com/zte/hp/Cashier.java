@@ -15,23 +15,11 @@ import java.util.List;
 public class Cashier {
 
     public Double calculation(ShoppingCart cart) {
-        List<Book> books = cart.getBooks();
-        int size = books.size();
-        return 32 * size * getDiscount(size);
+        double price = 0.0;
+        for(BookGroup group: cart.getBookGroups()){
+            price += group.getPrice();
+        }
+        return price;
     }
 
-    private double getDiscount(int size) {
-        double discount = 1;
-        if (size == 1)
-            discount = 1;
-        else if (size == 2)
-            discount = 0.95;
-        else if (size == 3)
-            discount = 0.90;
-        else if (size == 4)
-            discount = 0.8;
-        else
-            discount = 0.75;
-        return discount;
-    }
 }

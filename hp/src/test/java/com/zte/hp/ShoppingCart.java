@@ -16,13 +16,48 @@ import java.util.List;
  */
 public class ShoppingCart {
 
-    private List<Book> books = new ArrayList<Book>();
+    private List<Book> bookCart = new ArrayList<Book>();
+    private int totalSize = 0;
+    private List<BookGroup> bookGroups;
 
     public void add(Book... books) {
-        this.books.addAll(Arrays.asList(books));
+        totalSize += books.length;
+        bookCart.addAll(Arrays.asList(books));
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<BookGroup> getBookGroups() {
+        if (totalSize == 4 && isHasDoubleBook()) {
+            return Arrays.asList(new BookGroup(bookCart.subList(0,3), 0.9), new BookGroup(bookCart.subList(2,3), 1.0));
+        } else {
+            return Arrays.asList(new BookGroup(bookCart, getDiscount(totalSize)));
+        }
     }
+
+    public boolean isHasDoubleBook(){
+        List<Integer> serials = new ArrayList<Integer>();
+        for(Book book: bookCart){
+            if(serials.contains(book.getSerial())){
+                return true;
+            }else{
+                serials.add(book.getSerial());
+            }
+        }
+        return false;
+    }
+
+    private double getDiscount(int size) {
+        double discount = 1;
+        if (size == 1)
+            discount = 1;
+        else if (size == 2)
+            discount = 0.95;
+        else if (size == 3)
+            discount = 0.90;
+        else if (size == 4)
+            discount = 0.8;
+        else
+            discount = 0.75;
+        return discount;
+    }
+
 }
