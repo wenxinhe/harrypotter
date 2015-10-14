@@ -99,4 +99,23 @@ public class CashierTest {
         assertThat(result, is(118.4));
     }
 
+    @Test
+    public void should_get_lower_price_when_reader_buy_echo_of_serial1_serial2_serial3_double_and_one_serial4_one_serial5() {
+
+        // given
+        cart.add(
+                new Book(1, 32), new Book(1, 32),
+                new Book(2, 32), new Book(2, 32),
+                new Book(3, 32), new Book(3, 32),
+                new Book(4, 32),
+                new Book(5, 32));
+
+        // when
+        Double result = cashier.calculation(cart);
+
+        // then
+        assertThat(result, is(204.8));
+
+    }
+
 }
