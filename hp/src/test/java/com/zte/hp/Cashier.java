@@ -13,16 +13,25 @@ import java.util.List;
  * @version 1.0
  */
 public class Cashier {
+
     public Double calculation(ShoppingCart cart) {
         List<Book> books = cart.getBooks();
         int size = books.size();
+        return 32 * size * getDiscount(size);
+    }
+
+    private double getDiscount(int size) {
+        double discount = 1;
         if (size == 1)
-            return 32d;
-        else if(size == 2)
-            return 32 * size * 0.95;
-        else if(size == 3)
-            return 32 * size * 0.90;
+            discount = 1;
+        else if (size == 2)
+            discount = 0.95;
+        else if (size == 3)
+            discount = 0.90;
+        else if (size == 4)
+            discount = 0.8;
         else
-            return 32 * size * 0.8;
+            discount = 0.75;
+        return discount;
     }
 }
