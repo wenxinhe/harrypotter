@@ -19,6 +19,22 @@ public class ShoppingCart {
     private List<Book> bookCart = new ArrayList<Book>();
     private int totalSize = 0;
     private List<BookGroup> bookGroups;
+    private PericeRule rule;
+
+    public ShoppingCart() {
+
+        // default price rule you should override this by setRule method
+        this.rule = new PericeRule() {
+            @Override
+            public List<BookGroup> getBookGroups(List<Book> books) {
+                if (books.size() == 4 && isHasDoubleBook()) {
+                    return Arrays.asList(new BookGroup(bookCart.subList(0, 3), 0.9), new BookGroup(bookCart.subList(2, 3), 1.0));
+                } else {
+                    return Arrays.asList(new BookGroup(bookCart, getDiscount(totalSize)));
+                }
+            }
+        };
+    }
 
     public void add(Book... books) {
         totalSize += books.length;
@@ -26,23 +42,23 @@ public class ShoppingCart {
     }
 
     public List<BookGroup> getBookGroups() {
-        if (totalSize == 4 && isHasDoubleBook()) {
-            return Arrays.asList(new BookGroup(bookCart.subList(0,3), 0.9), new BookGroup(bookCart.subList(2,3), 1.0));
-        } else {
-            return Arrays.asList(new BookGroup(bookCart, getDiscount(totalSize)));
-        }
+        return rule.getBookGroups(this.bookCart);
     }
 
-    public boolean isHasDoubleBook(){
+    public boolean isHasDoubleBook() {
         List<Integer> serials = new ArrayList<Integer>();
-        for(Book book: bookCart){
-            if(serials.contains(book.getSerial())){
+        for (Book book : bookCart) {
+            if (serials.contains(book.getSerial())) {
                 return true;
-            }else{
+            } else {
                 serials.add(book.getSerial());
             }
         }
         return false;
+    }
+
+    public void setRule(PericeRule rule) {
+        this.rule = rule;
     }
 
     private double getDiscount(int size) {
