@@ -1,5 +1,6 @@
 package com.zte.hp;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -17,32 +18,32 @@ import static org.junit.Assert.assertThat;
  */
 public class CashierTest {
 
+    private ShoppingCart cart;
+    private Cashier cashier;
+
+    @Before
+    public void setUp() {
+        cart = new ShoppingCart();
+        cashier = new Cashier();
+    }
+
     @Test
     public void should_get_price_100_percent_when_reader_buy_one_book() {
-
         // given
-        ShoppingCart cart = new ShoppingCart();
         cart.add(new Book());
-
-        Cashier cashier = new Cashier();
 
         // when
         Double price = cashier.calculation(cart);
 
         // then
         assertThat(price, is(32d));
-
     }
 
     @Test
     public void should_get_price_95_percent_when_reader_buy_two_book() {
-
         // given
-        ShoppingCart cart = new ShoppingCart();
         cart.add(new Book());
         cart.add(new Book());
-
-        Cashier cashier = new Cashier();
 
         // when
         Double result = cashier.calculation(cart);
