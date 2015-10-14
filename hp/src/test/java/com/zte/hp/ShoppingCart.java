@@ -1,6 +1,7 @@
 package com.zte.hp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,8 +18,8 @@ public class ShoppingCart {
 
     private List<Book> books = new ArrayList<Book>();
 
-    public void add(Book book) {
-        books.add(book);
+    public void add(Book... books) {
+        this.books.addAll(Arrays.asList(books));
     }
 
     public List<Book> getBooks() {

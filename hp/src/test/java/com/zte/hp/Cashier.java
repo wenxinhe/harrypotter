@@ -15,9 +15,12 @@ import java.util.List;
 public class Cashier {
     public Double calculation(ShoppingCart cart) {
         List<Book> books = cart.getBooks();
-        if (books.size() == 1)
+        int size = books.size();
+        if (size == 1)
             return 32d;
+        else if(size == 2)
+            return 32 * size * 0.95;
         else
-            return 32d * books.size() * 0.95;
+            return 32 * size * 0.90;
     }
 }

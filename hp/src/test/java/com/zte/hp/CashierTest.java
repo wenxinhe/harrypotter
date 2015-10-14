@@ -42,14 +42,25 @@ public class CashierTest {
     @Test
     public void should_get_price_95_percent_when_reader_buy_two_book() {
         // given
-        cart.add(new Book());
-        cart.add(new Book());
+        cart.add(new Book(), new Book());
 
         // when
         Double result = cashier.calculation(cart);
 
         // then
         assertThat(result, is(60.8d));
+    }
+
+    @Test
+    public void should_get_price_90_percent_when_reader_buy_three_book() {
+        // given
+        cart.add(new Book(), new Book(), new Book());
+
+        // when
+        Double result = cashier.calculation(cart);
+
+        // then
+        assertThat(result, is(86.4d));
     }
 
 }
