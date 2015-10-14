@@ -63,4 +63,16 @@ public class CashierTest {
         assertThat(result, is(86.4d));
     }
 
+    @Test
+    public void should_get_price_80_percent_when_reader_buy_four_book() {
+        // given
+        cart.add(new Book(), new Book(), new Book(), new Book());
+
+        // when
+        Double result = cashier.calculation(cart);
+
+        // then
+        assertThat(result, is(102.4));
+    }
+
 }

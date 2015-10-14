@@ -20,7 +20,9 @@ public class Cashier {
             return 32d;
         else if(size == 2)
             return 32 * size * 0.95;
-        else
+        else if(size == 3)
             return 32 * size * 0.90;
+        else
+            return 32 * size * 0.8;
     }
 }
