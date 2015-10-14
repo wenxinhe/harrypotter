@@ -1,5 +1,7 @@
 package com.zte.hp;
 
+import java.util.List;
+
 /**
  * <p><owner>10087558</owner> </p>
  * <p><createdate>2015-10-14</createdate></p>
@@ -11,7 +13,11 @@ package com.zte.hp;
  * @version 1.0
  */
 public class Cashier {
-    public Float calculation(ShoppingCart cart) {
-        return null;
+    public Double calculation(ShoppingCart cart) {
+        List<Book> books = cart.getBooks();
+        if (books.size() == 1)
+            return 32d;
+        else
+            return 32d * books.size() * 0.95;
     }
 }
