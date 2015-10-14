@@ -1,6 +1,7 @@
 package com.zte.hp;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -99,6 +100,7 @@ public class CashierTest {
         assertThat(result, is(118.4));
     }
 
+    @Ignore
     @Test
     public void should_get_lower_price_when_reader_buy_echo_of_serial1_serial2_serial3_double_and_one_serial4_one_serial5() {
 
